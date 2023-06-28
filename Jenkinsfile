@@ -13,15 +13,9 @@ pipeline {
             }
         }
 
-        stage('Deploy In Staging Environment') {
-            steps {
-                build job: 'Deploy_Application_Staging_Env'
-            }
-        }
-
         stage('Create Tomcat Docker Image') {
             steps {
-                bat 'docker build . -t tomcatsamplewebapp:${env.BUILD_ID}'
+                bat "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}" 
             }
         }
         
